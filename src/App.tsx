@@ -89,7 +89,7 @@ function Header({ view, onViewChange }: { view: View; onViewChange: (v: View) =>
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginRight: 32 }}>
         <span style={{ fontSize: 18, fontWeight: 700, color: '#fff', letterSpacing: 1 }}>智筑造价</span>
-        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)', background: 'rgba(255,255,255,0.15)', padding: '2px 8px', borderRadius: 3 }}>重庆2018</span>
+        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)', background: 'rgba(255,255,255,0.15)', padding: '2px 8px', borderRadius: 3 }}>安徽2020</span>
       </div>
       <div style={{ display: 'flex', height: '100%' }}>
         {navItem('project', <ProjectOutlined />, '项目管理')}
