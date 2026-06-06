@@ -23,6 +23,7 @@
 | 状态 | Zustand |
 | 数据库 | SQLite (better-sqlite3) |
 | 报表 | ExcelJS |
+| 打包 | electron-builder |
 
 ## 快速开始
 
@@ -30,18 +31,36 @@
 # 安装依赖（自动 rebuild 原生模块）
 npm install
 
-# 开发模式
+# 开发模式（弹出窗口，支持热更新）
 npm run dev
 
-# 生产构建
+# 生产构建（仅编译，不打包）
 npm run build
 
-# 打包安装包
+# 打包为 Windows 安装包
 npm run dist
 ```
+
+打包产物在 `release/` 目录：
+- `win-unpacked/智筑造价.exe` — 免安装绿色版，双击直接用
+- `智筑造价 Setup x.x.x.exe` — NSIS 安装包（带安装向导）
+
+## 关于定额数据
+
+当前系统内置的定额数据为 **mock 数据**（结构仿照重庆 2018 定额，数值为合理估算）。
+
+如需替换为真实定额：
+1. 编辑 `electron/database/seed/quota-civil.ts`（土建）
+2. 编辑 `electron/database/seed/quota-decoration.ts`（装饰）
+3. 编辑 `electron/database/seed/quota-install.ts`（安装）
+4. 删除本地数据库文件（`%APPDATA%/cost-calc/cost-calc.db*`）
+5. 重新启动应用，系统会自动重新 seed
+
+费率规则同理，编辑 `electron/database/seed/fee-rates.ts`。
 
 ## 注意事项
 
 - `.npmrc` 已配置淘宝镜像，国内网络可直接安装
-- `postinstall` 会自动执行 `electron-rebuild`，确保 better-sqlite3 的 ABI 匹配
+- `postinstall` 会自动执行 `electron-rebuild`，确保 better-sqlite3 的 ABI 匹配 Electron
 - 数据库文件位于 `%APPDATA%/cost-calc/cost-calc.db`，首次启动自动创建并 seed 系统数据
+- 打包时若 winCodeSign 下载失败不影响绿色版使用

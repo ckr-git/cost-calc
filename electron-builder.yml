@@ -1,0 +1,26 @@
+appId: com.zhizhu.costcalc
+productName: 智筑造价
+copyright: Copyright © 2026
+
+directories:
+  output: release
+
+files:
+  - dist/**/*
+  - dist-electron/**/*
+  - package.json
+
+asar: false
+npmRebuild: true
+
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: public/favicon.png
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  shortcutName: 智筑造价
